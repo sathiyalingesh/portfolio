@@ -1,0 +1,239 @@
+:root {
+    --bg-dark: #050816;
+    --android-green: #3DDC84;
+    --neon-cyan: #00E5FF;
+    --deep-black: #02030A;
+    --text-white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    overflow-x: hidden; /* Allow vertical scroll, hide horizontal */
+}
+
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    pointer-events: none; /* Let mouse interact with 3D behind */
+}
+
+.glass-card {
+    background: rgba(5, 8, 22, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(61, 220, 132, 0.2);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+    padding: 3rem;
+    border-radius: 24px;
+    max-width: 500px;
+    pointer-events: auto; /* Re-enable clicks on card */
+    transform: translateY(0);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(61, 220, 132, 0.5);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, var(--android-green), var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.tech-stack {
+    font-size: 0.9rem;
+    color: var(--neon-cyan);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: #A0AEC0;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn.primary {
+    background: var(--android-green);
+    color: var(--deep-black);
+    box-shadow: 0 0 20px rgba(61, 220, 132, 0.3);
+}
+
+.btn.primary:hover {
+    box-shadow: 0 0 30px rgba(61, 220, 132, 0.6);
+    background: #4ae891;
+}
+
+.btn.secondary {
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    background: rgba(0, 229, 255, 0.05);
+}
+
+.btn.secondary:hover {
+    background: rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .overlay-content {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    .glass-card {
+        padding: 2rem;
+    }
+}
+
+/* --- New Sections --- */
+section {
+    position: relative;
+    z-index: 10;
+    padding: 6rem 10%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    pointer-events: none;
+}
+
+section > * {
+    pointer-events: auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--android-green);
+    text-shadow: 0 0 10px rgba(61, 220, 132, 0.3);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Glass cards for list items */
+.card {
+    background: rgba(5, 8, 22, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(61, 220, 132, 0.3);
+    padding: 2rem;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+    border-top-color: var(--neon-cyan);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.card h4 {
+    font-size: 1.1rem;
+    color: var(--neon-cyan);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.card .date {
+    font-size: 0.85rem;
+    color: #A0AEC0;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card ul {
+    list-style-position: inside;
+    color: #CBD5E0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.card li {
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    color: #CBD5E0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tag {
+    font-size: 0.8rem;
+    background: rgba(61, 220, 132, 0.1);
+    color: var(--android-green);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(61, 220, 132, 0.2);
+}
